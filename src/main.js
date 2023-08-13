@@ -7,7 +7,6 @@ import * as unlocker from './components/unlocker';
 import * as logger from './utils/logger';
 
 try {
-    interceptors.attachInitialDataInterceptor(processYtData);
     interceptors.attachJsonInterceptor(processYtData);
     interceptors.attachXhrOpenInterceptor(requestPreprocessor.handleXhrOpen);
     interceptors.attachRequestInterceptor(requestPreprocessor.handleFetchRequest);
