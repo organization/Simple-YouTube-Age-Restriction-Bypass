@@ -1,5 +1,5 @@
 export function isGoogleVideoUrl(url) {
-    return url.host.includes('.googlevideo.com');
+    return url?.host?.includes('.googlevideo.com');
 }
 
 export function isGoogleVideoUnlockRequired(googleVideoUrl, lastProxiedGoogleVideoId) {

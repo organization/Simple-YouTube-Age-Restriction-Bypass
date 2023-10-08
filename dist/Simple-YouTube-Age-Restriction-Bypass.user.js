@@ -88,7 +88,8 @@
     };
 
     function isGoogleVideoUrl(url) {
-        return url.host.includes('.googlevideo.com');
+        var _url$host;
+        return url === null || url === void 0 || (_url$host = url.host) === null || _url$host === void 0 ? void 0 : _url$host.includes('.googlevideo.com');
     }
 
     function isGoogleVideoUnlockRequired(googleVideoUrl, lastProxiedGoogleVideoId) {
