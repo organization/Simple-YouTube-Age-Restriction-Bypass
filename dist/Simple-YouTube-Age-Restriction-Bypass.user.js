@@ -1135,7 +1135,7 @@
             return proxyUrl;
         }
 
-        if (url.pathname.indexOf('/youtubei/') === 0) {
+        if (url !== null && url !== void 0 && url.pathname && url.pathname.indexOf('/youtubei/') === 0) {
             // Store auth headers in storage for further usage.
             attach$3(xhr, 'setRequestHeader', ([headerName, headerValue]) => {
                 if (Config.GOOGLE_AUTH_HEADER_NAMES.includes(headerName)) {
@@ -1144,7 +1144,10 @@
             });
         }
 
-        if (Config.SKIP_CONTENT_WARNINGS && method === 'POST' && ['/youtubei/v1/player', '/youtubei/v1/next'].includes(url.pathname)) {
+        if (
+            Config.SKIP_CONTENT_WARNINGS && method === 'POST' && url !== null && url !== void 0 && url.pathname
+            && ['/youtubei/v1/player', '/youtubei/v1/next'].includes(url.pathname)
+        ) {
             // Add content check flags to player and next request (this will skip content warnings)
             attach$3(xhr, 'send', (args) => {
                 if (typeof args[0] === 'string') {
@@ -1170,7 +1173,7 @@
             return newGoogleVideoUrl;
         }
 
-        if (url.pathname.indexOf('/youtubei/') === 0 && isObject(requestOptions.headers)) {
+        if (url !== null && url !== void 0 && url.pathname && url.pathname.indexOf('/youtubei/') === 0 && isObject(requestOptions.headers)) {
             // Store auth headers in authStorage for further usage.
             for (let headerName in requestOptions.headers) {
                 if (Config.GOOGLE_AUTH_HEADER_NAMES.includes(headerName)) {
@@ -1179,7 +1182,7 @@
             }
         }
 
-        if (Config.SKIP_CONTENT_WARNINGS && ['/youtubei/v1/player', '/youtubei/v1/next'].includes(url.pathname)) {
+        if (Config.SKIP_CONTENT_WARNINGS && url !== null && url !== void 0 && url.pathname && ['/youtubei/v1/player', '/youtubei/v1/next'].includes(url.pathname)) {
             // Add content check flags to player and next request (this will skip content warnings)
             requestOptions.body = setContentCheckOk(requestOptions.body);
         }
