@@ -59,16 +59,16 @@ async function buildUserscript() {
 
         const iife = (() => {
             const [top, bottom] = (() => {
-                (function iife(ranOnce) {
+                function inject(ranOnce) {
                     // Trick to get around the sandbox restrictions in Greasemonkey (Firefox)
                     // Inject code into the main window if criteria match
                     if (this !== window && !ranOnce) {
-                        window.eval('(' + iife.toString() + ')(true);');
+                        window.eval('(' + inject.toString() + ')(true);');
                         return;
                     }
 
                     /* END */
-                })();
+                }
             }).toString().slice(7, -1).split('/* END */');
 
             return { top, bottom };
@@ -76,7 +76,7 @@ async function buildUserscript() {
 
         return {
             name: 'userscript',
-            banner: config + iife.top,
+            banner: config + "export " + iife.top,
             footer: iife.bottom,
         };
     }

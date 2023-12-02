@@ -28,12 +28,11 @@
     This is a transpiled version to achieve a clean code base and better browser compatibility.
     You can find the nicely readable source code at https://github.com/zerodytrash/Simple-YouTube-Age-Restriction-Bypass
 */
-
-(function iife(ranOnce) {
+export function inject(ranOnce) {
     // Trick to get around the sandbox restrictions in Greasemonkey (Firefox)
     // Inject code into the main window if criteria match
     if (this !== window && !ranOnce) {
-        window.eval('(' + iife.toString() + ')(true);');
+        window.eval('(' + inject.toString() + ')(true);');
         return;
     }
 
@@ -1293,4 +1292,4 @@
 
         return ytData;
     }
-})();
+}
